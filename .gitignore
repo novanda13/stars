@@ -1,0 +1,6 @@
+# Ignore Frontend Folder
+/frontend/node_modules
+/frontend/.next
+
+# Ignore Backend Folder
+/backend/node_modules
