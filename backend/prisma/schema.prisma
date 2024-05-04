@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  username String @db.VarChar(100)
+  password String @db.VarChar(100)
+  name String @db.VarChar(100)
+  role_id String @default(uuid())
+  phone String @db.VarChar(15)
+  picture String @db.VarChar(100)
+  created_at DateTime
+  role Role @relation(fields: [role_id], references: [id])
+  transaction Transaction[]
+  product Product[]
+
+  @@map("users")
+}
+
+model Role {
+  id String @id @default(uuid())
+  name String @db.VarChar(100)
+  created_at DateTime
+  user User[]
+
+  @@map("roles")
+}
+
+model Transaction {
+  id String @id @default(uuid())
+  user_id String @default(uuid())
+  products String @db.Text
+  total_price Float
+  created_at DateTime
+  user User @relation(fields: [user_id], references: [id])
+
+  @@map("transactions")
+}
+
+model Product {
+  id String @id @default(uuid())
+  name String @db.VarChar(100)
+  category_id String @default(uuid())
+  price Float
+  image String @db.VarChar(100)
+  status Boolean @default(true)
+  created_at DateTime
+  created_by String @default(uuid())
+  user User @relation(fields: [created_by], references: [id])
+  category Category @relation(fields: [category_id], references: [id])
+
+  @@map("products")
+}
+
+model Category {
+  id String @id @default(uuid())
+  name String @db.VarChar(100)
+  created_at DateTime
+  product Product[]
+
+  @@map("categories")
+}
