@@ -11,6 +11,19 @@ const register = async (req, res, next) => {
   }
 };
 
+const login = async (req, res, next) => {
+  try {
+    // Call the user service login function
+    const { token } = await userService.login(req);
+
+    // Send successful login response with the JWT token
+    res.status(200).json({ token });
+  } catch (e) {
+    next(e);
+  }
+};
+
 export default {
-  register
+  register,
+  login
 };

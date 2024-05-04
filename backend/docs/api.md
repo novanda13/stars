@@ -12,7 +12,8 @@
 
 ## User API
 
-- Login User API
+- Login User API Done
+- Register User API Done
 - Update User API
 - Get User API
 - Logout User API
@@ -34,7 +35,6 @@
 
 - Add Product API
 - Get Product API
-- Search Product API
 - Update Product API
 - Remove Product API
 
@@ -51,7 +51,6 @@
 - Add Categories
 - Update Category
 - Get Category
-- Search Category
 - Delete Category
 
 # Transactions
@@ -67,5 +66,4 @@
 ## Transactions API
 
 - Add Transactions
-- Search Transactions
 - Delete Transactions
