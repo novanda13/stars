@@ -1,4 +1,5 @@
 import {
+  getUserValidation,
   loginSchema,
   registerUserValidation
 } from "../validation/user-validation.js";
@@ -22,11 +23,10 @@ const register = async (request) => {
     throw new ResponseError(400, "Username already exists");
   }
 
-  user.password = await bcrypt.hash(user.password, 10); // Hash password securely
-
+  user.password = await bcrypt.hash(user.password, 10);
   const result = await prismaClient.user.create({
     data: user,
-    select: { id: true, username: true, name: true } // Return only essential fields
+    select: { id: true, username: true, name: true }
   });
 
   return result;
@@ -36,8 +36,8 @@ const comparePasswords = async (password, hashedPassword) => {
   return await bcrypt.compare(password, hashedPassword);
 };
 
-const login = async (request) => {
-  const loginRequest = validate(loginSchema, request.body);
+const login = async (req) => {
+  const loginRequest = validate(loginSchema, req.body);
 
   const user = await prismaClient.user.findUnique({
     where: {
@@ -63,13 +63,30 @@ const login = async (request) => {
     throw new ResponseError(401, "Invalid credentials");
   }
 
-  // Generate JWT payload
   const payload = { userId: user.id };
 
-  // Sign the JWT token
-  const token = jwt.sign(payload, jwtSecret, { expiresIn: "24h" }); // Expires in 24 hours
-
+  const token = jwt.sign(payload, jwtSecret, { expiresIn: "2h" });
   return { token };
 };
 
-export default { register, login };
+const get = async (request) => {
+  const username = validate(getUserValidation, request);
+
+  const user = await prismaClient.user.findUnique({
+    where: {
+      username: username
+    },
+    select: {
+      username: true,
+      name: true
+    }
+  });
+
+  if (!user) {
+    throw new ResponseError(404, "User not found");
+  }
+
+  return user;
+};
+
+export default { register, login, get };

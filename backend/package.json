@@ -4,7 +4,8 @@
   "description": "aplikasi kasir",
   "main": "src/main.js",
   "scripts": {
-    "test": "jest -i"
+    "test": "jest -i",
+    "dev": "nodemon src/main.js"
   },
   "jest": {
     "transform": {
@@ -35,6 +36,7 @@
     "@types/uuid": "^9.0.8",
     "babel-jest": "^29.7.0",
     "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
     "prisma": "^5.13.0",
     "supertest": "^7.0.0"
   }
