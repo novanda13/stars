@@ -12,7 +12,7 @@ import jwt from "jsonwebtoken";
 
 const jwtSecret = process.env.JWT_SECRET;
 
-const register = async (request) => {
+const registerUser = async (request) => {
   const user = validate(registerUserValidation, request);
 
   const existingUserCount = await prismaClient.user.count({
@@ -69,12 +69,14 @@ const login = async (req) => {
   return { token };
 };
 
-const get = async (request) => {
+const getUser = async (request) => {
   const username = validate(getUserValidation, request);
 
-  const user = await prismaClient.user.findUnique({
+  const user = await prismaClient.user.findMany({
     where: {
-      username: username
+      username: {
+        contains: username
+      }
     },
     select: {
       username: true,
@@ -150,9 +152,9 @@ const logout = (token) => {
 };
 
 export default {
-  register,
+  registerUser,
   login,
-  get,
+  getUser,
   deleteUser,
   updateUser,
   logout,

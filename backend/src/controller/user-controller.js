@@ -1,8 +1,8 @@
 import userService from "../service/user-service.js";
 
-const register = async (req, res, next) => {
+const registerUser = async (req, res, next) => {
   try {
-    const result = await userService.register(req.body);
+    const result = await userService.registerUser(req.body);
     res.status(200).json({
       data: result
     });
@@ -24,7 +24,7 @@ const login = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const username = req.body.username;
-    const result = await userService.get(username);
+    const result = await userService.getUser(username);
     res.status(200).json({
       data: result
     });
@@ -103,7 +103,7 @@ const logoutUser = async (req, res, next) => {
 };
 
 export default {
-  register,
+  registerUser,
   login,
   getUser,
   deleteUser,

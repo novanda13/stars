@@ -56,8 +56,8 @@ model Product {
   price Float
   image String @db.VarChar(100)
   status Boolean @default(true)
-  created_at DateTime
   created_by String @default(uuid())
+  created_at DateTime @default(now())
   user User @relation(fields: [created_by], references: [id])
   category Category @relation(fields: [category_id], references: [id])
 
