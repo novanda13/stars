@@ -86,6 +86,8 @@ const get = async (request) => {
     throw new ResponseError(404, "User not found");
   }
 
+  console.log(user);
+
   return user;
 };
 

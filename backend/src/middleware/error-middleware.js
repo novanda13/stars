@@ -1,11 +1,13 @@
 import { ResponseError } from "../error/response-error.js";
 import ValidationError from "joi";
 
-const errorMiddleware = async (req, res, next) => {
+const errorMiddleware = async (err, req, res, next) => {
   if (!err) {
     next();
     return;
   }
+
+  console.error(err);
 
   if (err instanceof ResponseError) {
     res
