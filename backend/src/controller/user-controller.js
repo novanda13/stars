@@ -56,14 +56,13 @@ const deleteUser = async (req, res, next) => {
 const updateUser = async (req, res, next) => {
   try {
     const username = req.params.username;
-    const updateField = req.body.field;
-    const updateValue = req.body.value;
-
-    console.log(req.body.field);
 
     if (!username) {
       return res.status(400).json({ message: "Missing user information" });
     }
+
+    const updateField = req.body.field;
+    const updateValue = req.body.value;
 
     if (!updateField || !updateValue) {
       return res
@@ -71,13 +70,9 @@ const updateUser = async (req, res, next) => {
         .json({ message: "Missing field or value to update" });
     }
 
-    const updateData = { field: updateField, value: updateValue };
+    const updateData = { [updateField]: updateValue };
 
     const updatedUser = await userService.updateUser(username, updateData);
-
-    if (!updatedUser) {
-      return res.status(400).json({ message: "Invalid field for update" });
-    }
 
     res
       .status(200)

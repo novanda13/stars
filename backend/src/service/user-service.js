@@ -103,24 +103,32 @@ const deleteUser = async (username) => {
   }
 };
 
-const allowedFields = ["name", "username", "password"];
-
 const updateUser = async (username, updateData) => {
-  console.log(updateData);
+  const allowedFields = ["name", "password", "phone"];
+
   try {
     if (updateData.password) {
       const hashedPassword = await bcrypt.hash(updateData.password, 10);
       updateData.password = hashedPassword;
     }
 
-    if (!allowedFields.includes(updateData.field)) {
-      return null;
+    const updateField = Object.keys(updateData)[0];
+
+    if (!allowedFields.includes(updateField)) {
+      throw new ResponseError(403, "Field is invalid");
     }
+
+    console.log(updateData);
 
     const updatedUser = await prismaClient.user.update({
       where: { username },
       data: updateData
     });
+
+    if (!updatedUser) {
+      throw new ResponseError(404, "User not found");
+    }
+
     return updatedUser;
   } catch (error) {
     throw error;
