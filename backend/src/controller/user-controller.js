@@ -21,7 +21,7 @@ const login = async (req, res, next) => {
   }
 };
 
-const get = async (req, res, next) => {
+const getUser = async (req, res, next) => {
   try {
     const username = req.body.username;
     const result = await userService.get(username);
@@ -33,8 +33,64 @@ const get = async (req, res, next) => {
   }
 };
 
+const deleteUser = async (req, res, next) => {
+  try {
+    const username = req.params.username;
+
+    if (!username) {
+      return res.status(400).json({ message: "Missing user information" });
+    }
+
+    const deletedUser = await userService.deleteUser(username);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateUser = async (req, res, next) => {
+  try {
+    const username = req.params.username;
+    const updateField = req.body.field;
+    const updateValue = req.body.value;
+
+    console.log(req.body.field);
+
+    if (!username) {
+      return res.status(400).json({ message: "Missing user information" });
+    }
+
+    if (!updateField || !updateValue) {
+      return res
+        .status(400)
+        .json({ message: "Missing field or value to update" });
+    }
+
+    const updateData = { field: updateField, value: updateValue };
+
+    const updatedUser = await userService.updateUser(username, updateData);
+
+    if (!updatedUser) {
+      return res.status(400).json({ message: "Invalid field for update" });
+    }
+
+    res
+      .status(200)
+      .json({ message: "User updated successfully", data: updatedUser });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   register,
   login,
-  get
+  getUser,
+  deleteUser,
+  updateUser
 };

@@ -91,4 +91,40 @@ const get = async (request) => {
   return user;
 };
 
-export default { register, login, get };
+const deleteUser = async (username) => {
+  console.error(username);
+  try {
+    const deletedUser = await prismaClient.user.delete({
+      where: { username }
+    });
+    return deletedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+const allowedFields = ["name", "username", "password"];
+
+const updateUser = async (username, updateData) => {
+  console.log(updateData);
+  try {
+    if (updateData.password) {
+      const hashedPassword = await bcrypt.hash(updateData.password, 10);
+      updateData.password = hashedPassword;
+    }
+
+    if (!allowedFields.includes(updateData.field)) {
+      return null;
+    }
+
+    const updatedUser = await prismaClient.user.update({
+      where: { username },
+      data: updateData
+    });
+    return updatedUser;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export default { register, login, get, deleteUser, updateUser };
