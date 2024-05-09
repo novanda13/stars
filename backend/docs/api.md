@@ -16,10 +16,10 @@ Total Done 2/16 API
 
 - Login User API Done
 - Register User API Done
-- Update User API
-- Get User API
+- Update User API Done
+- Get User API Done
 - Logout User API
-- Remove User API
+- Remove User API Done
 
 # Product Data
 

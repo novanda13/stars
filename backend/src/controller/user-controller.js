@@ -82,10 +82,31 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+const logoutUser = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+
+    if (!token) {
+      return res.status(401).json({ message: "You are not logged in" });
+    }
+
+    if (userService.isTokenBlacklisted(token)) {
+      return res.status(401).json({ message: "Invalid or expired token" });
+    }
+
+    userService.logout(token);
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   register,
   login,
   getUser,
   deleteUser,
-  updateUser
+  updateUser,
+  logoutUser
 };

@@ -104,7 +104,7 @@ const deleteUser = async (username) => {
 };
 
 const updateUser = async (username, updateData) => {
-  const allowedFields = ["name", "password", "phone"];
+  const allowedFields = ["name", "password", "phone", "picture"];
 
   try {
     if (updateData.password) {
@@ -135,4 +135,26 @@ const updateUser = async (username, updateData) => {
   }
 };
 
-export default { register, login, get, deleteUser, updateUser };
+const blacklist = new Set();
+
+const blacklistToken = (token) => {
+  blacklist.add(token);
+};
+
+const isTokenBlacklisted = (token) => {
+  return blacklist.has(token);
+};
+
+const logout = (token) => {
+  blacklistToken(token);
+};
+
+export default {
+  register,
+  login,
+  get,
+  deleteUser,
+  updateUser,
+  logout,
+  isTokenBlacklisted
+};

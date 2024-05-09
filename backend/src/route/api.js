@@ -9,5 +9,6 @@ userRouter.use(authMiddleware);
 userRouter.get("/api/users/current", userController.getUser);
 userRouter.delete("/api/users/:username", userController.deleteUser);
 userRouter.patch("/api/users/:username", userController.updateUser);
+userRouter.post("/api/users/logout", userController.logoutUser);
 
 export { userRouter };
