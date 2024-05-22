@@ -17,5 +17,6 @@ userRouter.post("/api/users/logout", userController.logoutUser);
 // Product API
 userRouter.post("/api/products", productController.createProduct);
 userRouter.get("/api/products", productController.getProduct);
+userRouter.put("/api/products/:id", productController.updateProduct);
 
 export { userRouter };

@@ -1,7 +1,6 @@
 import { prismaClient } from "../application/database.js";
 import { ResponseError } from "../error/response-error.js";
 import "dotenv/config";
-import jwt from "jsonwebtoken";
 
 const createProduct = async (productData) => {
   try {
@@ -42,7 +41,21 @@ const getProduct = async () => {
   }
 };
 
+const updateProduct = async (productId, updatedProductData) => {
+  try {
+    const product = await prismaClient.product.update({
+      where: { id: productId },
+      data: updatedProductData
+    });
+
+    return product;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   createProduct,
-  getProduct
+  getProduct,
+  updateProduct
 };

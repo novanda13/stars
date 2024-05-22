@@ -36,7 +36,7 @@ Total Done 2/16 API
 ## Product API
 
 - Add Product API Done
-- Get Product API
+- Get Product API Done
 - Update Product API
 - Remove Product API
 

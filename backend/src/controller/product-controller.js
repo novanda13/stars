@@ -22,11 +22,32 @@ const getProduct = async (req, res, next) => {
 
     res.status(200).json(products);
   } catch (error) {
-    next(error); // Pass the error to the error handler middleware
+    next(error);
+  }
+};
+
+const updateProduct = async (req, res, next) => {
+  try {
+    const productId = req.params.id;
+    const updatedProductData = req.body;
+
+    const updatedProduct = await productService.updateProduct(
+      productId,
+      updatedProductData
+    );
+
+    if (!updatedProduct) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    next(error);
   }
 };
 
 export default {
   createProduct,
-  getProduct
+  getProduct,
+  updateProduct
 };
