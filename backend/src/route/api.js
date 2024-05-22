@@ -18,5 +18,6 @@ userRouter.post("/api/users/logout", userController.logoutUser);
 userRouter.post("/api/products", productController.createProduct);
 userRouter.get("/api/products", productController.getProduct);
 userRouter.put("/api/products/:id", productController.updateProduct);
+userRouter.delete("/api/products/:id", productController.deleteProduct);
 
 export { userRouter };

@@ -54,8 +54,21 @@ const updateProduct = async (productId, updatedProductData) => {
   }
 };
 
+const deleteProduct = async (productId) => {
+  try {
+    const deletedProduct = await prismaClient.product.delete({
+      where: { id: productId }
+    });
+
+    return deletedProduct;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
   createProduct,
   getProduct,
-  updateProduct
+  updateProduct,
+  deleteProduct
 };

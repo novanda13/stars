@@ -37,7 +37,7 @@ Total Done 2/16 API
 
 - Add Product API Done
 - Get Product API Done
-- Update Product API
+- Update Product API Done
 - Remove Product API
 
 # Categories Data
