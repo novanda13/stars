@@ -16,6 +16,17 @@ const createProduct = async (req, res, next) => {
   }
 };
 
+const getProduct = async (req, res, next) => {
+  try {
+    const products = await productService.getProduct();
+
+    res.status(200).json(products);
+  } catch (error) {
+    next(error); // Pass the error to the error handler middleware
+  }
+};
+
 export default {
-  createProduct
+  createProduct,
+  getProduct
 };

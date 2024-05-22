@@ -23,6 +23,26 @@ const createProduct = async (productData) => {
   }
 };
 
+const getProduct = async () => {
+  try {
+    const products = await prismaClient.product.findMany({
+      select: {
+        id: true,
+        name: true,
+        category: { select: { name: true } },
+        price: true,
+        image: true,
+        status: true
+      }
+    });
+
+    return products;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export default {
-  createProduct
+  createProduct,
+  getProduct
 };

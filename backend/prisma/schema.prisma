@@ -32,7 +32,7 @@ model User {
 model Role {
   id String @id @default(uuid())
   name String @db.VarChar(100)
-  created_at DateTime
+  created_at DateTime @default(now())
   user User[]
 
   @@map("roles")
@@ -43,7 +43,7 @@ model Transaction {
   user_id String @default(uuid())
   products String @db.Text
   total_price Float
-  created_at DateTime
+  created_at DateTime @default(now())
   user User @relation(fields: [user_id], references: [id])
 
   @@map("transactions")
@@ -67,7 +67,7 @@ model Product {
 model Category {
   id String @id @default(uuid())
   name String @db.VarChar(100)
-  created_at DateTime
+  created_at DateTime @default(now())
   product Product[]
 
   @@map("categories")
