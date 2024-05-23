@@ -7,7 +7,6 @@ const createProduct = async (req, res, next) => {
     const userId = getUserIdFromToken(req);
 
     productData.created_by = userId;
-    console.log(productData);
     const createdProduct = await productService.createProduct(productData);
 
     res.status(200).json(createdProduct);

@@ -4,6 +4,7 @@ import "dotenv/config";
 import { authMiddleware } from "../middleware/auth-middleware.js";
 import productController from "../controller/product-controller.js";
 import categoryController from "../controller/category-controller.js";
+import transactionController from "../controller/transaction-controller.js";
 
 const userRouter = new express.Router();
 userRouter.use(express.json());
@@ -26,5 +27,13 @@ userRouter.post("/api/categories", categoryController.createCategory);
 userRouter.get("/api/categories", categoryController.getCategory);
 userRouter.put("/api/categories/:id", categoryController.updateCategory);
 userRouter.delete("/api/categories/:id", categoryController.deleteCategory);
+
+//Transaction API
+userRouter.post("/api/transactions", transactionController.createTransaction);
+userRouter.get("/api/transactions", transactionController.getTransaction);
+userRouter.delete(
+  "/api/transactions/:id",
+  transactionController.deleteTransaction
+);
 
 export { userRouter };

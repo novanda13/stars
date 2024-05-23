@@ -53,7 +53,7 @@ Total Done 2/16 API
 - Add Categories Done
 - Update Category Done
 - Get Category Done
-- Delete Category
+- Delete Category Done
 
 # Transactions
 
@@ -67,6 +67,6 @@ Total Done 2/16 API
 
 ## Transactions API
 
-- Add Transactions
-- Get Transactions
-- Delete Transactions
+- Add Transactions Done
+- Get Transactions Done
+- Delete Transactions Done
