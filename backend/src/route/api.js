@@ -3,6 +3,7 @@ import userController from "../controller/user-controller.js";
 import "dotenv/config";
 import { authMiddleware } from "../middleware/auth-middleware.js";
 import productController from "../controller/product-controller.js";
+import categoryController from "../controller/category-controller.js";
 
 const userRouter = new express.Router();
 userRouter.use(express.json());
@@ -19,5 +20,8 @@ userRouter.post("/api/products", productController.createProduct);
 userRouter.get("/api/products", productController.getProduct);
 userRouter.put("/api/products/:id", productController.updateProduct);
 userRouter.delete("/api/products/:id", productController.deleteProduct);
+
+// Category API
+userRouter.post("/api/categories", categoryController.createCategory);
 
 export { userRouter };
