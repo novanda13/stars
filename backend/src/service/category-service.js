@@ -22,6 +22,41 @@ const createCategory = async (categoryData) => {
   }
 };
 
+// update
+const updateCategory = async (categoryId, updatedCategoryData) => {
+  try {
+    const updatedCategory = await prismaClient.category.update({
+      where: { id: categoryId },
+      data: updatedCategoryData
+    });
+
+    return updatedCategory;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// get
+
+const getCategory = async () => {
+  try {
+    const categories = await prismaClient.category.findMany({
+      select: {
+        id: true,
+        name: true
+      }
+    });
+
+    return categories;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// delete
+
 export default {
-  createCategory
+  createCategory,
+  updateCategory,
+  getCategory
 };

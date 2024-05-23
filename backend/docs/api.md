@@ -50,9 +50,9 @@ Total Done 2/16 API
 
 ## Categories API
 
-- Add Categories
-- Update Category
-- Get Category
+- Add Categories Done
+- Update Category Done
+- Get Category Done
 - Delete Category
 
 # Transactions

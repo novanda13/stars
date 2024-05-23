@@ -12,6 +12,38 @@ const createCategory = async (req, res, next) => {
   }
 };
 
+const updateCategory = async (req, res, next) => {
+  try {
+    const categoryId = req.params.id;
+    const updatedCategoryData = req.body;
+
+    const updatedCategory = await categoryService.updateCategory(
+      categoryId,
+      updatedCategoryData
+    );
+
+    if (!updatedCategory) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    res.status(200).json(updatedCategory);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getCategory = async (req, res, next) => {
+  try {
+    const categories = await categoryService.getCategory();
+
+    res.status(200).json(categories);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
-  createCategory
+  createCategory,
+  updateCategory,
+  getCategory
 };
