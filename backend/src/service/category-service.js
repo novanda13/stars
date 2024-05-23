@@ -22,7 +22,6 @@ const createCategory = async (categoryData) => {
   }
 };
 
-// update
 const updateCategory = async (categoryId, updatedCategoryData) => {
   try {
     const updatedCategory = await prismaClient.category.update({
@@ -35,8 +34,6 @@ const updateCategory = async (categoryId, updatedCategoryData) => {
     throw error;
   }
 };
-
-// get
 
 const getCategory = async () => {
   try {
@@ -53,10 +50,19 @@ const getCategory = async () => {
   }
 };
 
-// delete
+const deleteCategory = async (categoryId) => {
+  try {
+    const deletedCategory = await prismaClient.category.delete({
+      where: { id: categoryId }
+    });
+
+    return deletedCategory;
+  } catch (error) {}
+};
 
 export default {
   createCategory,
   updateCategory,
-  getCategory
+  getCategory,
+  deleteCategory
 };

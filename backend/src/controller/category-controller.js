@@ -42,8 +42,25 @@ const getCategory = async (req, res, next) => {
   }
 };
 
+const deleteCategory = async (req, res, next) => {
+  try {
+    const categoryId = req.params.id;
+
+    const deletedCategory = await categoryService.deleteCategory(categoryId);
+
+    if (!deletedCategory) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+
+    return res.status(200).json({ message: "Category successfully deleted" });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export default {
   createCategory,
   updateCategory,
-  getCategory
+  getCategory,
+  deleteCategory
 };

@@ -25,5 +25,6 @@ userRouter.delete("/api/products/:id", productController.deleteProduct);
 userRouter.post("/api/categories", categoryController.createCategory);
 userRouter.get("/api/categories", categoryController.getCategory);
 userRouter.put("/api/categories/:id", categoryController.updateCategory);
+userRouter.delete("/api/categories/:id", categoryController.deleteCategory);
 
 export { userRouter };
