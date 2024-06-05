@@ -12,6 +12,7 @@ userRouter.use(authMiddleware);
 
 // User API
 userRouter.get("/api/users/current", userController.getUser);
+userRouter.get("/api/users", userController.getAllUser);
 userRouter.delete("/api/users/:username", userController.deleteUser);
 userRouter.patch("/api/users/:username", userController.updateUser);
 userRouter.post("/api/users/logout", userController.logoutUser);

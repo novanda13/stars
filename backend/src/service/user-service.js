@@ -93,6 +93,23 @@ const getUser = async (request) => {
   return user;
 };
 
+const getAllUser = async (request) => {
+  const users = await prismaClient.user.findMany({
+    select: {
+      username: true,
+      name: true
+    }
+  });
+
+  if (!users || users.length === 0) {
+    throw new ResponseError(404, "Users not found");
+  }
+
+  console.log(users);
+
+  return users;
+};
+
 const deleteUser = async (username) => {
   console.error(username);
   try {
@@ -155,6 +172,7 @@ export default {
   registerUser,
   login,
   getUser,
+  getAllUser,
   deleteUser,
   updateUser,
   logout,

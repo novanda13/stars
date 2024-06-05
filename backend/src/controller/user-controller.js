@@ -33,6 +33,17 @@ const getUser = async (req, res, next) => {
   }
 };
 
+const getAllUser = async (req, res, next) => {
+  try {
+    const result = await userService.getAllUser();
+    res.status(200).json({
+      data: result
+    });
+  } catch (e) {
+    next(e);
+  }
+};
+
 const deleteUser = async (req, res, next) => {
   try {
     const username = req.params.username;
@@ -106,6 +117,7 @@ export default {
   registerUser,
   login,
   getUser,
+  getAllUser,
   deleteUser,
   updateUser,
   logoutUser

@@ -1,4 +1,9 @@
-Total Done 17/17 API
+Total Done 18/18 API
+
+## Catatan
+
+Untuk digunakan pada server Ubuntu/Linux perlu mengubah binaryTarget prisma lalu npx prisma generate
+Sebaliknya Default adalah untuk windows dan perlu generate lagi
 
 # User Data
 
@@ -18,6 +23,7 @@ Total Done 17/17 API
 - Register User API Done
 - Update User API Done
 - Get User API Done
+- Get All User API Done
 - Logout User API Done
 - Remove User API Done
 
