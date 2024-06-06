@@ -98,14 +98,14 @@ const getUser = async (request) => {
     }
   });
 
-  if (user.length === 0) {
+  if (!users || users.length === 0) {
     throw new ResponseError(404, "Username not found");
   }
 
   return user;
 };
 
-const getAllUser = async (request) => {
+const getAllUser = async () => {
   const users = await prismaClient.user.findMany({
     select: {
       username: true,
@@ -121,8 +121,6 @@ const getAllUser = async (request) => {
   if (!users || users.length === 0) {
     throw new ResponseError(404, "Users not found");
   }
-
-  console.log(users);
 
   return users;
 };
