@@ -26,7 +26,16 @@ const registerUser = async (request) => {
   user.password = await bcrypt.hash(user.password, 10);
   const result = await prismaClient.user.create({
     data: user,
-    select: { id: true, username: true, name: true }
+    select: {
+      id: true,
+      username: true,
+      name: true,
+      role: {
+        select: {
+          name: true
+        }
+      }
+    }
   });
 
   return result;
@@ -80,11 +89,16 @@ const getUser = async (request) => {
     },
     select: {
       username: true,
-      name: true
+      name: true,
+      role: {
+        select: {
+          name: true
+        }
+      }
     }
   });
 
-  if (!user) {
+  if (!user.data) {
     throw new ResponseError(404, "User not found");
   }
 
@@ -97,7 +111,12 @@ const getAllUser = async (request) => {
   const users = await prismaClient.user.findMany({
     select: {
       username: true,
-      name: true
+      name: true,
+      role: {
+        select: {
+          name: true
+        }
+      }
     }
   });
 
