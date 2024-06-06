@@ -98,11 +98,9 @@ const getUser = async (request) => {
     }
   });
 
-  if (!user.data) {
-    throw new ResponseError(404, "User not found");
+  if (user.length === 0) {
+    throw new ResponseError(404, "Username not found");
   }
-
-  console.log(user);
 
   return user;
 };
