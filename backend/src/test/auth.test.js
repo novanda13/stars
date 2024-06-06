@@ -9,7 +9,7 @@ describe("POST /api/users", function () {
     await removeTestUser();
   });
 
-  it("should can register new user", async () => {
+  it("should register new user succesfully", async () => {
     const result = await supertest(web).post("/api/users").send({
       username: "test",
       password: "rahasia",
