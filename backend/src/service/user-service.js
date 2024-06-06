@@ -126,11 +126,19 @@ const getAllUser = async () => {
 };
 
 const deleteUser = async (username) => {
-  console.error(username);
   try {
+    const user = await prismaClient.user.findUnique({
+      where: { username }
+    });
+
+    if (!user) {
+      throw new ResponseError(404, "Username not found");
+    }
+
     const deletedUser = await prismaClient.user.delete({
       where: { username }
     });
+
     return deletedUser;
   } catch (error) {
     throw error;
