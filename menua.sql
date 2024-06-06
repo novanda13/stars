@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2024 at 04:57 PM
+-- Generation Time: Jun 06, 2024 at 07:50 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -136,10 +136,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `role_id`, `phone`, `picture`, `created_at`) VALUES
 ('1fe33567-594e-4190-9507-44a539da2c7c', 'anjas', '$2a$10$UeegYI5/RtslppgqPgmyFeUIAqLvUk1oaeOoE0BuCzT3tQL3H3A2G', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:25:26.720'),
 ('5e858c86-f766-45e3-a6e8-08e20b8dcea8', 'renaldy', '$2a$10$F8rEASotAVolmuXFJdDS/OsuefXNs4BHDLBkE/STJzA.hz/PqHtnq', 'Muhammad Renaldy', '4ccf6160-d97a-4653-b323-53dafe1592a9', '123467390', 'https://example.com/profile.jpg', '2024-05-04 22:16:21.475'),
+('5f20fcad-8515-46d8-b8c5-9ebd85d76c83', 'kasir1', '$2a$10$oUM.VtSbFoSVNU7jnt19HOaJw1c.7uSFxl4uD5/1D3/zykAzWIVyW', 'Kasir 1', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-06-06 16:09:55.979'),
+('67c855a6-db30-4bc9-8deb-2924f6d8a911', 'Kasir 1', '$2a$10$EO69WSmAzIqyAbAmmtl82uTwei.faVJeLjsLaMcXESn4WKNQaMBjq', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-06-06 16:08:08.081'),
 ('9b2243d8-197f-4dea-8b1a-07cfb14efe92', 'anjasmara', '$2a$10$aMTWPpR/y9vUSnpqI6nP1OkCWazQCfHakD3dCqo8h.vDd.lvYWZZy', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:25:28.465'),
-('c640f706-37e7-4233-8c90-cee763ac4c06', 'baru', '$2a$10$kgMTXlnh2JofDUOiZwoJ5eOCR68XKJIrfh7aGYNBzReQO7f/Chk2K', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:17:21.461'),
-('d10f848f-fa2a-4335-a446-97343d43f29d', 'antoo', '$2a$10$rT2D0LBclMVGtxO5jnRAPOZ27gTCtlL/NpJiEttzw7rD2/lgbBkSK', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:25:36.744'),
-('d43f0726-217e-44db-b43c-68bc34e7fda2', 'barwu', '$2a$10$EIRF0DckGsxa0/wBsRa4NuEgGKjmFdLHSAciISyhKHyyE/zXEiOD2', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:17:32.898'),
+('a13be94c-bc56-4abd-931f-19e76377f70a', 'kasir2', '$2a$10$J.ZjoakjBf6wGAGqVa038u.eCdng/C/hw4loKiOxy33IF1z17FYi6', 'Kasir 2', '4ccf6160-d97a-4653-b323-53dafe1592a9', '123245678930', 'https://example.com/picture.jpg', '2024-06-06 16:11:30.096'),
 ('d9182cce-97bc-4f39-96b1-4ea523446eab', 'edel.kind', '$2a$10$v3zpwVVVLWk2qLsg5cGpmucHSZwTe53Gkr36hqVSvvnXDWlwm9oq2', 'Sigit Wijonarko', '4ccf6160-d97a-4653-b323-53dafe1592a9', '1234567390', 'https://example.com/profile.jpg', '2024-05-04 22:15:07.793'),
 ('da20292a-36c3-4732-b1d4-e701099774ff', 'ini.adnan', '$2a$10$p6LL.73vBZLKUEZhjPX2YupMwis9K6T8jwR1TMG2buyq7U41D0qOm', 'Muhammad Adnan', '4ccf6160-d97a-4653-b323-53dafe1592a9', '1234567890', 'https://example.com/profile.jpg', '2024-05-04 22:13:09.309');
 
