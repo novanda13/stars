@@ -1,0 +1,66 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: root_password
+          MYSQL_DATABASE: menua
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: aaaabbbb123
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js for backend
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'latest'
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Start MySQL container
+        run: docker-compose -f docker-compose.yml up -d mysql
+
+      - name: Wait for MySQL to be ready
+        run: docker-compose -f docker-compose.yml exec mysql mysqladmin --silent --wait=30 -uroot -proot_password ping
+
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm run test
+
+      - name: Setup Node.js for frontend
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'latest'
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Build frontend
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Run frontend
+        working-directory: ./frontend
+        run: npm run start
+
+      - name: Build Docker images
+        run: docker-compose -f docker-compose.yml build
