@@ -46,7 +46,7 @@ const comparePasswords = async (password, hashedPassword) => {
 };
 
 const login = async (req) => {
-  const loginRequest = validate(loginSchema, req.body);
+  const loginRequest = req.body;
 
   const user = await prismaClient.user.findUnique({
     where: {
@@ -55,7 +55,13 @@ const login = async (req) => {
     select: {
       id: true,
       username: true,
-      password: true
+      password: true,
+      name: true,
+      role: {
+        select: {
+          name: true
+        }
+      }
     }
   });
 
@@ -74,8 +80,14 @@ const login = async (req) => {
 
   const payload = { userId: user.id };
 
-  const token = jwt.sign(payload, jwtSecret, { expiresIn: "2h" });
-  return { token };
+  const token = jwt.sign(payload, jwtSecret, { expiresIn: "24h" });
+
+  const { password, ...userDetails } = user;
+
+  return {
+    token,
+    user: userDetails
+  };
 };
 
 const getUser = async (request) => {
@@ -98,7 +110,7 @@ const getUser = async (request) => {
     }
   });
 
-  if (!users || users.length === 0) {
+  if (!user || user.length === 0) {
     throw new ResponseError(404, "Username not found");
   }
 
