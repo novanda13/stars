@@ -28,7 +28,7 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: aaaabbbb123
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./menua.sql:/docker-entrypoint-initdb.d/menua.sql
