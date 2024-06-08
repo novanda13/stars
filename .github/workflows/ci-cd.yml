@@ -8,16 +8,25 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Run the workflow on Ubuntu virtual machines
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3 # Checkout the code from the repository
 
-      - name: Build Docker Compose Services
-        run: docker-compose build
+      - name: Set up Docker cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.docker/dch/v2-beta1/$(basename "${{ runner.os }}-$(echo "${{ runner.arch }}" | tr ':' '-'))"
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
 
-      - name: Run Tests
-        run: |
-          docker-compose up -d
-          docker-compose run backend npm run test
+      - name: Build backend image
+        run: docker-compose build backend
+
+      - name: Build MySQL image (if using a custom image)
+        # If using the official `mysql:latest` image, skip this step
+        run: docker-compose build mysql
+
+      - name: Run tests in the backend container
+        run: docker-compose run --rm backend npm run test
