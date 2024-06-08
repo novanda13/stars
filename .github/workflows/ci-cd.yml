@@ -39,7 +39,7 @@ jobs:
         run: docker-compose -f docker-compose.yml up -d mysql
 
       - name: Wait for MySQL to be ready
-        run: docker-compose -f docker-compose.yml exec mysql mysqladmin --silent --wait=30 -uroot -proot_password ping
+        run: docker-compose -f docker-compose.yml run mysql mysqladmin --silent --wait=30 -uroot -proot_password ping
 
       - name: Run backend tests
         working-directory: ./backend
