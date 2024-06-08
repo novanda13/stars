@@ -21,7 +21,8 @@ services:
       - NODE_ENV=production
 
   mysql:
-    build: . # Build the image from the current directory's Dockerfile
+    build:
+      context: ./# Build the image from the current directory's Dockerfile
     environment:
       # Remove credentials from here, they are stored in environment variables
     ports:
