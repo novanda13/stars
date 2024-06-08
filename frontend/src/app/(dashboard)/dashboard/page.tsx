@@ -2,16 +2,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
+import { tokenAuth } from '@/helpers/cookies';
 import "./dashboard.css"
-
-
-const getCookie = (name: string): string | null => {
-    const cookieValue = document.cookie
-        .split('; ')
-        .find(row => row.startsWith(name + '='))
-        ?.split('=')[1];
-    return cookieValue ? decodeURIComponent(cookieValue) : null;
-}
 
 interface FoodItem {
     id: number;
@@ -29,15 +21,14 @@ export default function DashboardHome() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const token = getCookie('userToken'); // Replace 'token' with the actual cookie name
-                if (!token) {
+                if (!tokenAuth()) {
                     throw new Error('Token not found');
                 }
                 const response = await fetch('http://localhost:3000/api/products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`,
+                        'Authorization': `Bearer ${tokenAuth()}`,
                     },
                 });
                 if (!response.ok) {
