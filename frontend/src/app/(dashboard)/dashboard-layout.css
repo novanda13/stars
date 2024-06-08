@@ -1,0 +1,24 @@
+#nav {
+    height: 80px;
+}
+
+#aside-left {
+    position: fixed;
+    left: -120%;
+    top: 80px;
+    height: calc(100vh - 80px);
+    width: 240px;
+}
+
+.aside-left__active {
+    left: 0px !important;
+}
+
+#dashboard-main {
+    height: calc(100vh - 80px);
+    width: calc(100%);
+}
+
+.dashboard-main__active {
+    width: calc(100% - 240px) !important;
+}

@@ -1,0 +1,21 @@
+#dashboard-main_main {
+    height: calc(100vh - 80px);
+    width: calc(100% - 350px);
+}
+
+#dashboard-main_right {
+    height: calc(100vh - 80px);
+    width: 350px;
+    background-color: #fff;
+}
+
+#dashboard-main_right input::-webkit-outer-spin-button,
+#dashboard-main_right input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+#dashboard-main_right input[type=number] {
+    -moz-appearance: textfield;
+}
