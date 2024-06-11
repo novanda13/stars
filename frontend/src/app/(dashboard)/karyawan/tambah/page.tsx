@@ -3,6 +3,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { TambahKaryawanAction } from './actions';
 
 interface ProfileImageFormState {
     profileImage: File | null;
@@ -39,18 +40,19 @@ export default function TambahKaryawan() {
                 <p className="text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem repellat voluptatem aperiam nam nemo praesentium, nesciunt tempora perferendis.</p>
             </section>
             <div className="flex flex-wrap md:flex-nowrap mt-5">
-                <form className="order-2 md:order-1 w-full md:w-7/12 flex flex-wrap gap-y-1 md:pr-5 mb-5 md:mb-0">
+                <form action={TambahKaryawanAction} className="order-2 md:order-1 w-full md:w-7/12 flex flex-wrap gap-y-1 md:pr-5 mb-5 md:mb-0">
                     <div className="w-full max-w-full">
                         <div className="mb-2.5">
                             <label
-                                htmlFor="basic-username"
+                                htmlFor="basic-name"
                                 className="block cursor-pointer font-medium text-base text-gray-700 mb-1.5"
                             >
                                 Name
                             </label>
                             <input
-                                id="basic-username"
+                                id="basic-name"
                                 type="text"
+                                name="name"
                                 placeholder="Name"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
                             />
@@ -67,6 +69,7 @@ export default function TambahKaryawan() {
                             <input
                                 id="basic-username"
                                 type="text"
+                                name="username"
                                 placeholder="Username"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
                             />
@@ -75,15 +78,16 @@ export default function TambahKaryawan() {
                     <div className="w-full max-w-full">
                         <div className="mb-2.5">
                             <label
-                                htmlFor="basic-username"
+                                htmlFor="basic-passowrd"
                                 className="block cursor-pointer font-medium text-base text-gray-700 mb-1.5"
                             >
                                 Password
                             </label>
                             <input
-                                id="basic-username"
+                                id="basic-passowrd"
                                 type="text"
-                                placeholder="Username"
+                                name="password"
+                                placeholder="Password"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
                             />
                         </div>
@@ -91,25 +95,33 @@ export default function TambahKaryawan() {
                     <div className="w-full max-w-full">
                         <div className="mb-2.5">
                             <label
-                                htmlFor="basic-username"
+                                htmlFor="basic-phone"
                                 className="block cursor-pointer font-medium text-base text-gray-700 mb-1.5"
                             >
                                 Phone
                             </label>
                             <input
-                                id="basic-username"
+                                id="basic-phone"
                                 type="text"
+                                name="phone"
                                 placeholder="Name"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
                             />
                         </div>
                     </div>
+                    <div className="w-full max-w-full">
+                        <input
+                            type="hidden"
+                            name="picture"
+                            value="https://example.com/picture.jpg"
+                        />
+                    </div>
                     <div className="w-full max-w-full flex items-center justify-end gap-x-5 mt-5">
                         <Link href="/dashboard">Batal</Link>
-                        <Button>Simpan</Button>
+                        <Button type="submit">Simpan</Button>
                     </div>
                 </form>
-                <form className="order-1 md:order-2 w-full md:w-5/12 flex justify-center" onSubmit={handleSubmitImage}>
+                {/* <form className="order-1 md:order-2 w-full md:w-5/12 flex justify-center" onSubmit={handleSubmitImage}>
                     <div className="text-center">
                         <div className="relative h-[200px] w-[200px] mb-3">
                             <label htmlFor="profileImage" className="flex items-center justify-center rounded-full size-8 bg-blue-500 text-white z-10 absolute right-2.5 bottom-2.5 cursor-pointer">
@@ -135,7 +147,7 @@ export default function TambahKaryawan() {
                             <Button className="text-sm">Simpan Foto</Button>
                         )}
                     </div>
-                </form>
+                </form> */}
             </div>
         </article>
     )

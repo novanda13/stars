@@ -10,6 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { tokenAuth } from '@/helpers/cookies';
+import Link from 'next/link';
 
 interface Role {
     name: string;
@@ -76,6 +77,9 @@ export default function Karyawan() {
                 <p className="text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem repellat voluptatem aperiam nam nemo praesentium, nesciunt tempora perferendis.</p>
             </section>
             <div className="w-full mt-5 bg-white p-5">
+                <div className="flex items-center justify-end mb-3">
+                    <Link href="karyawan/tambah/" className="font-medium text-sm py-2 px-5 rounded text-white bg-blue-500">Tambah karyawan</Link>
+                </div>
                 <Table>
                     <TableCaption>A list of your recent karyawan.</TableCaption>
                     <TableHeader>
