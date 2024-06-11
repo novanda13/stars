@@ -7,13 +7,11 @@ export async function TambahKaryawanAction(formData: FormData) {
     const cookieStore = cookies()
     const token = cookieStore.get('userToken')
 
-    console.log(formData)
-
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
-    const name = formData.get('password') as string;
-    const phone = formData.get('password') as string;
-    const picture = formData.get('password') as string;
+    const name = formData.get('name') as string;
+    const phone = formData.get('phone') as string;
+    const picture = formData.get('picture') as string;
 
     const response = await fetch('http://localhost:3000/api/users', {
         method: 'POST',
@@ -32,8 +30,6 @@ export async function TambahKaryawanAction(formData: FormData) {
     })
 
     const data = await response.json();
-
-    console.log(data)
 
     if (data.error) {
         redirect('/karyawan/tambah')
