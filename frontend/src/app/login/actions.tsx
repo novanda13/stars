@@ -30,6 +30,6 @@ export async function login(formData: FormData) {
     cookies().set('userFullName', data.user.name)
     cookies().set('userRole', data.user.role.name)
 
-    revalidatePath('/')
-    redirect('/')
+    revalidatePath('/dashboard')
+    redirect('/dashboard')
 }

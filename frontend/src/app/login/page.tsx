@@ -1,7 +1,12 @@
+import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "@/components/ui/card"
 import FormLogin from "@/components/front/FormLogin"
 
 export default function Login() {
+    const cookieStore = cookies()
+    const token = cookieStore.get('userToken')
+    if (token) return redirect('/dashboard')
     return (
         <main className="h-screen w-screen flex items-center justify-center">
             <Card className="mx-auto max-w-sm">
