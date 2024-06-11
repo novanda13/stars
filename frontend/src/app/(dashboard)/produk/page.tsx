@@ -87,7 +87,7 @@ export default function Produk() {
                     <TableCaption>A list of your recent products.</TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>ID</TableHead>
+                            <TableHead>NO</TableHead>
                             <TableHead>Nama</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Category</TableHead>
