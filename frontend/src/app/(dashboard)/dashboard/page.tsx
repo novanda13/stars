@@ -17,6 +17,8 @@ interface FoodItem {
 export default function DashboardHome() {
     const [products, setProducts] = useState<FoodItem[]>([]);
     const [orderedFoods, setOrderedFoods] = useState<FoodItem[]>([]);
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [productsOrder, setProductsOrder] = useState<string>("");
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -44,6 +46,21 @@ export default function DashboardHome() {
         fetchProducts();
     }, []);
 
+    useEffect(() => {
+        const calculateTotalPrice = () => {
+            const total = orderedFoods.reduce((sum, food) => sum + food.price, 0);
+            setTotalPrice(total);
+        };
+
+        const rewriteProducts = () => {
+            const productsList = orderedFoods.map(item => item.name).join(", ");
+            setProductsOrder(productsList)
+        }
+
+        rewriteProducts();
+        calculateTotalPrice();
+    }, [orderedFoods]);
+
     const handleSelectFood = (food: FoodItem) => {
         setOrderedFoods([...orderedFoods, food]);
     };
@@ -51,6 +68,32 @@ export default function DashboardHome() {
     const handleRemoveFood = (food: FoodItem) => {
         setOrderedFoods(orderedFoods.filter(item => item.id !== food.id));
     };
+
+    const handleOrderFood = async () => {
+        try {
+            if (!tokenAuth()) {
+                throw new Error('Token not found');
+            }
+            const response = await fetch('http://localhost:3000/api/transactions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${tokenAuth()}`,
+                },
+                body: JSON.stringify({
+                    products: productsOrder,
+                    total_price: totalPrice
+                }),
+            })
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+            setOrderedFoods([]);
+        } catch (error: any) {
+            console.log(error)
+        }
+    }
+
     return (
         <main className="w-full flex items-start">
             <article id="dashboard-main_main">
@@ -122,7 +165,7 @@ export default function DashboardHome() {
                             </div>
                             <div className="w-[75px] flex items-center">
                                 <button className="h-[30px] w-[25px] bg-blue-500 flex items-center justify-center text-white rounded-l-md">-</button>
-                                <input className="h-[30px] w-[25px] text-center bg-white" type="number" value={1} />
+                                <input className="h-[30px] w-[25px] text-center bg-white" type="number" defaultValue={1} />
                                 <button className="h-[30px] w-[25px] bg-blue-500 flex items-center justify-center text-white rounded-r-md">+</button>
                             </div>
                         </div>
@@ -131,10 +174,10 @@ export default function DashboardHome() {
                 <div className="flex items-center" style={{ height: "80px" }}>
                     <div className="h-full w-full flex items-center justify-between p-5 rounded bg-blue-500">
                         <div>
-                            <p className="font-medium text-sm text-gray-100">3 Items</p>
-                            <p className="font-semibold text-xl text-white">Rp. 26.000</p>
+                            <p className="font-medium text-sm text-gray-100">{orderedFoods.length} Items</p>
+                            <p className="font-semibold text-xl text-white">Rp. {totalPrice}</p>
                         </div>
-                        <button type="button" className="font-semibold text-gray-900 bg-white py-2 px-5 rounded">Order</button>
+                        <button onClick={handleOrderFood} type="button" className="font-semibold text-gray-900 bg-white py-2 px-5 rounded">Order</button>
                     </div>
                 </div>
             </aside>
