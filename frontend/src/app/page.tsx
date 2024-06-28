@@ -6,6 +6,6 @@ export default function Home() {
   const token = cookieStore.get('userToken')
   if (!token) return redirect('/login')
   return (
-    <h1>Home</h1>
+    <h1>Homes</h1>
   );
 }

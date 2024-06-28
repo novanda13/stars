@@ -1,19 +1,18 @@
-name: CI for Feature to Staging
+name: Build Before The Merge
 
 on:
-  pull_request:
+  push:
     branches:
-      - staging
+      - frontend
 
 jobs:
-  build-and-test:
+  build-to-merge:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Frontend steps
       - name: Set up Node.js for Frontend
         uses: actions/setup-node@v4
         with:
