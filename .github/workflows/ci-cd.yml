@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # Run the workflow on Ubuntu virtual machines
+
+    steps:
+      - uses: actions/checkout@v3 # Checkout the code from the repository
+
+      - name: Set up Docker cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.docker/dch/v2-beta1/$(basename "${{ runner.os }}-$(echo "${{ runner.arch }}" | tr ':' '-'))"
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Dockerfile') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+
+      - name: Build backend image
+        run: docker-compose build backend
+
+      - name: Build MySQL image (if using a custom image)
+        # If using the official `mysql:latest` image, skip this step
+        run: docker-compose build mysql
+
+      - name: Run tests in the backend container
+        run: docker-compose run --rm backend npm run test

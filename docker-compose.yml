@@ -21,12 +21,10 @@ services:
       - NODE_ENV=production
 
   mysql:
-    image: mysql:latest
+    build:
+      context: ./# Build the image from the current directory's Dockerfile
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: menua
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: aaaabbbb123
+      # Remove credentials from here, they are stored in environment variables
     ports:
       - "3306:3306"
     volumes:
