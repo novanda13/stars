@@ -1,28 +1,28 @@
-name: CI for Feature to Staging
+name: Build Before The Merge Backend to Staging
 
 on:
+  push:
+    branches:
+      - backend
   pull_request:
     branches:
       - staging
 
 jobs:
-  build-and-test:
+  test-backend:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16, 18]  # Test against multiple Node.js versions
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4  # Checkout code
 
-      # Frontend steps
-      - name: Set up Node.js for Frontend
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
 
-      - name: Install Frontend dependencies
-        working-directory: ./frontend
+      - name: Install dependencies
+        working-directory: ./backend
         run: npm install
 
-      - name: Build Frontend
-        working-directory: ./frontend
-        run: npm run build
+      - name: Run tests
+        working-directory: ./backend
+        run: npm test
