@@ -2,8 +2,8 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
-import { tokenAuth } from '@/helpers/cookies';
 import "./dashboard.css"
+import { tokenAuth } from '@/helpers/cookies';
 
 interface FoodItem {
     id: number;
