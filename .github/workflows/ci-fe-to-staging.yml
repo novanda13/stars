@@ -1,19 +1,18 @@
-name: CI for Feature to Staging
+name: Auto Pull Request and Merge from Frontend to Staging
 
 on:
-  pull_request:
+  push:
     branches:
-      - staging
+      - frontend
 
 jobs:
-  build-and-test:
+  build-pr-mr:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Frontend steps
       - name: Set up Node.js for Frontend
         uses: actions/setup-node@v4
         with:
@@ -26,3 +25,25 @@ jobs:
       - name: Build Frontend
         working-directory: ./frontend
         run: npm run build
+
+      - name: Set up GitHub CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-get update
+          sudo apt-get install gh
+
+      - name: Create Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          gh auth login --with-token <<< $GITHUB_TOKEN
+          PR_URL=$(gh pr create --base staging --head frontend --title "Auto PR from frontend" --body "This is an automated pull request from frontend to staging" --json url --jq .url)
+          echo "Pull request created: $PR_URL"
+
+      - name: Auto Merge Pull Request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr merge $PR_URL --merge --auto
