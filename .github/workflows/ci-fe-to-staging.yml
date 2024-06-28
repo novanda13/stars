@@ -13,13 +13,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      # Frontend steps
+      - name: Set up Node.js for Frontend
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Install dependencies
+      - name: Install Frontend dependencies
+        working-directory: ./frontend
         run: npm install
 
-      - name: Run build
+      - name: Build Frontend
+        working-directory: ./frontend
         run: npm run build
