@@ -26,4 +26,5 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            echo 'CD is Disabled (Check workflow comment for the code).'
+            cd ~/
+            ip addr
