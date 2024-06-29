@@ -25,7 +25,3 @@ jobs:
       - name: Build Frontend
         working-directory: ./frontend
         run: npm run build
-
-      - name: Run Frontend with timeout
-        working-directory: ./frontend
-        run: timeout 20s npm run start
