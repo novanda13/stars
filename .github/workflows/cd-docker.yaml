@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
         with:
@@ -22,7 +22,10 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
-            git clone https://github.com/novanda13/stars.git
-            cd stars
+            mkdir /data/
+            cd /data/stars
             docker compose down -v
+            rm -rf /data/*
+            cd /data/ && git clone https://github.com/novanda13/stars.git
+            cd stars
             docker compose up -d --build
