@@ -1,12 +1,12 @@
-name: Build Before The Merge
+name: Build Frontend Before Merge To Staging
 
 on:
-  push:
+  pull_request:
     branches:
-      - frontend
+      - staging
 
 jobs:
-  build-to-merge:
+  build-to-merge-staging:
     runs-on: ubuntu-latest
 
     steps:
