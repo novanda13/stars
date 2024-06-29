@@ -26,8 +26,6 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
-      - name: Run Frontend
+      - name: Run Frontend with timeout
         working-directory: ./frontend
-        run: |
-          npm run start
-          sleep 30
+        run: timeout 20s npm run start
