@@ -26,7 +26,7 @@ export default function DashboardHome() {
                 if (!tokenAuth()) {
                     throw new Error('Token not found');
                 }
-                const response = await fetch('http://backend:3000/api/api/products', {
+                const response = await fetch('http://159.223.64.28:3000/api/products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default function DashboardHome() {
             if (!tokenAuth()) {
                 throw new Error('Token not found');
             }
-            const response = await fetch('http://backend:3000/api/api/transactions', {
+            const response = await fetch('http://159.223.64.28:3000/api/transactions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
