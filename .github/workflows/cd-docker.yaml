@@ -3,7 +3,7 @@
 name: CD
 
 # Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
+# events but only for the main branch
 on:
   push:
     branches: [main]
@@ -17,7 +17,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Deploy using ssh
         uses: appleboy/ssh-action@master
         with:
@@ -25,6 +24,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
           port: 10125
-          script: |
-            cd ~/
-            ip addr
+
+      - name: CD
+        run: echo 'CD is Disabled (Check workflow comment for the code).'
