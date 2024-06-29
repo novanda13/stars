@@ -7,7 +7,7 @@ export async function login(formData: FormData) {
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
 
-    const response = await fetch('http://sokong.my.id:3000/api/users/login', {
+    const response = await fetch('http://backend:3000/api/api/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

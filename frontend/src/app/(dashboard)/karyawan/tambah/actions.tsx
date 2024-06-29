@@ -13,7 +13,7 @@ export async function TambahKaryawanAction(formData: FormData) {
     const phone = formData.get('phone') as string;
     const picture = formData.get('picture') as string;
 
-    const response = await fetch('http://sokong.my.id:3000/api/users', {
+    const response = await fetch('http://backend:3000/api/api/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
