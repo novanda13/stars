@@ -27,5 +27,5 @@ jobs:
             docker compose down -v
             rm -rf /data/*
             cd /data/ && git clone https://github.com/novanda13/stars.git
-            cd stars
+            cd /data/stars
             docker compose up -d --build
