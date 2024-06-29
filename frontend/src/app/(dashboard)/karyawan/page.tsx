@@ -31,7 +31,7 @@ export default function Karyawan() {
                 if (!tokenAuth()) {
                     throw new Error('Token not found');
                 }
-                const response = await fetch('http://backend:3000/api/users', {
+                const response = await fetch('http://10.50.0.125:3000/api/users', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export default function Karyawan() {
 
     const handleDeleteProduct = async (username: string) => {
         try {
-            const response = await fetch(`http://backend:3000/api/users/${username}`, {
+            const response = await fetch(`http://10.50.0.125:3000/api/users/${username}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
