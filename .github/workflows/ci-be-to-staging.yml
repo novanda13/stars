@@ -1,9 +1,6 @@
 name: Build Before The Merge Backend to Staging
 
 on:
-  push:
-    branches:
-      - backend
   pull_request:
     branches:
       - staging
