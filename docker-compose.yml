@@ -1,35 +1,56 @@
 services:
-  backend:
+ backend:
     build:
       context: ./backend
+    networks:
+      - host
+      - application
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - mysql
     environment:
       - DATABASE_URL=mysql://admin:aaaabbbb123@mysql:3306/menua
       - JWT_SECRET=amikom-21if02
 
-  frontend:
+ frontend:
     build:
       context: ./frontend
+    networks:
+      - host
     ports:
-      - "8080:8080"
+      - '8080:8080'
     depends_on:
       - backend
     environment:
       - NODE_ENV=production
 
-  mysql:
-    build:
-      context: ./# Build the image from the current directory's Dockerfile
+ mysql:
+#    build:
+#      context: ./
+    image: mysql:latest
     environment:
-      # Remove credentials from here, they are stored in environment variables
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=menua
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=aaaabbbb123
+    command:
+      - --table_definition_cache=100
+      - --performance_schema=0
+      - --mysql-native-password=ON
+      - --innodb_use_native_aio=0
+    networks:
+      - application
     ports:
-      - "3306:3306"
+      - '3306:3306'
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysqld
       - ./menua.sql:/docker-entrypoint-initdb.d/menua.sql
 
 volumes:
   mysql_data:
+
+networks:
+  host:
+  application:
+    driver: bridge
