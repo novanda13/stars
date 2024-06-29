@@ -26,7 +26,7 @@ export default function DashboardHome() {
                 if (!tokenAuth()) {
                     throw new Error('Token not found');
                 }
-                const response = await fetch('http://localhost:3000/api/products', {
+                const response = await fetch('http://sokong.my.id:3000/api/products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default function DashboardHome() {
             if (!tokenAuth()) {
                 throw new Error('Token not found');
             }
-            const response = await fetch('http://localhost:3000/api/transactions', {
+            const response = await fetch('http://sokong.my.id:3000/api/transactions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
