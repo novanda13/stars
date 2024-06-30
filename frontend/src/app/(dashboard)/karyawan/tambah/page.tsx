@@ -85,7 +85,7 @@ export default function TambahKaryawan() {
                             </label>
                             <input
                                 id="basic-passowrd"
-                                type="text"
+                                type="password"
                                 name="password"
                                 placeholder="Password"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
@@ -104,7 +104,7 @@ export default function TambahKaryawan() {
                                 id="basic-phone"
                                 type="text"
                                 name="phone"
-                                placeholder="Name"
+                                placeholder="Phone Number"
                                 className="w-full text-base text-gray-700 py-2 px-3 border border-slate-300 focus:outline-blue-500 rounded-md"
                             />
                         </div>

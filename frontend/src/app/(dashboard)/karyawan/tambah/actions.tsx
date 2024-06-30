@@ -20,7 +20,7 @@ export async function TambahKaryawanAction(formData: FormData) {
             'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
-            username,
+            username: username.toLowerCase(),
             password,
             name,
             role_id: "4ccf6160-d97a-4653-b323-53dafe1592a9",
