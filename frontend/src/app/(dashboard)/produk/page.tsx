@@ -34,7 +34,7 @@ export default function Produk() {
                 if (!tokenAuth()) {
                     throw new Error('Token not found');
                 }
-                const response = await fetch('http://localhost:8080/api/products', {
+                const response = await fetch('http://localhost:3000/api/products', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function Produk() {
 
     const handleDeleteProduct = async (id: number) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/products/${id}`, {
+            const response = await fetch(`http://localhost:3000/api/products/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
