@@ -27,6 +27,7 @@ interface FoodItem {
 
 export default function Produk() {
     const [products, setProducts] = useState<FoodItem[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -73,6 +74,11 @@ export default function Produk() {
         }
     };
 
+    const filteredProducts = products.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <article className="h-full overflow-y-auto w-full p-5 md:p-6 lg:p-8">
             <section className="w-full sm:w-9/12 md:w-7/12">
@@ -80,7 +86,33 @@ export default function Produk() {
                 <p className="text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem repellat voluptatem aperiam nam nemo praesentium, nesciunt tempora perferendis.</p>
             </section>
             <div className="w-full mt-5 bg-white p-5">
-                <div className="flex items-center justify-end mb-3">
+                <div className="flex flex-wrap items-center justify-between mb-3">
+                    <div className="relative w-full max-w-[500px]">
+                        <input
+                            id="icon-search"
+                            type="text"
+                            placeholder="search"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full text-base text-gray-700 py-2 pl-10 border border-slate-300 focus:outline-blue-500 rounded-md peer"
+                        />
+                        <div className="absolute top-1/2 left-3 transform -translate-y-1/2 text-slate-500 peer-focus:text-blue-500">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.75}
+                                stroke="currentColor"
+                                className="size-5"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                                />
+                            </svg>
+                        </div>
+                    </div>
                     <Link href="produk/tambah/" className="font-medium text-sm py-2 px-5 rounded text-white bg-blue-500">Tambah Produk</Link>
                 </div>
                 <Table>
@@ -96,9 +128,9 @@ export default function Produk() {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {products.map((product, index: number) => (
+                        {filteredProducts.map((product, index: number) => (
                             <TableRow key={product.id}>
-                                <TableCell>{++index}</TableCell>
+                                <TableCell>{index + 1}</TableCell>
                                 <TableCell>{product.name}</TableCell>
                                 <TableCell>{product.price}</TableCell>
                                 <TableCell>{product.category.name}</TableCell>

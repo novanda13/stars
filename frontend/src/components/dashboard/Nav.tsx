@@ -57,7 +57,7 @@ export default function DashboardNav() {
                             <DropdownMenuSeparator />
                             <DropdownMenuGroup>
                                 <DropdownMenuItem>
-                                    <Link href="/profil">Profil</Link>
+                                    <Link href="/karyawan/ubah/12">Profil</Link>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem>
                                     <Link href="/riwayat-transaksi">Transaksi</Link>
