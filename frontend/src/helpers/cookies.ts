@@ -7,3 +7,4 @@ export const getCookie = (name: string): string | null => {
 };
 
 export const tokenAuth = () => getCookie("userToken");
+export const roleAuth = () => getCookie("userRole")

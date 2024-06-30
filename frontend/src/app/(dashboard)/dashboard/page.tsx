@@ -98,11 +98,11 @@ export default function DashboardHome() {
         <main className="w-full flex items-start">
             <article id="dashboard-main_main">
                 <div className="h-[60px] flex items-center bg-slate-100 border-b">
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Semua</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Makanan</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Minuman</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Dessert</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Lainnya</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Semua</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Makanan</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Minuman</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Dessert</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Lainnya</Button>
                 </div>
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 overflow-y-auto" style={{ height: "calc(100% - 60px)" }}>
                     {products.map((food) => (
