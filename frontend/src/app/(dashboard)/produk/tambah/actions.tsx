@@ -12,7 +12,7 @@ export async function TambahProdukAction(formData: FormData) {
     const image = formData.get('image') as string;
     const status = formData.get('status') as string;
 
-    const response = await fetch('http://159.223.64.28:3000/api/products', {
+    const response = await fetch('http://localhost:8080/api/products', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

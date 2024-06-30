@@ -7,7 +7,7 @@ export async function login(formData: FormData) {
     const username = formData.get('username') as string;
     const password = formData.get('password') as string;
 
-    const response = await fetch('http://159.223.64.28:3000/api/users/login', {
+    const response = await fetch('http://localhost:8080/api/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
