@@ -1,46 +1,15 @@
-/* eslint-disable @next/next/no-img-element */
-"use client"
-import React, { useState, ChangeEvent } from 'react';
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { TambahKaryawanAction } from './actions';
 
-interface ProfileImageFormState {
-    profileImage: File | null;
-    profileImageUrl: string | null;
-}
-
-export default function TambahKaryawan() {
-    const [profileImageFormState, setProfileImageFormState] = useState<ProfileImageFormState>({
-        profileImage: null,
-        profileImageUrl: null,
-    });
-
-    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setProfileImageFormState({
-                profileImage: file,
-                profileImageUrl: imageUrl,
-            });
-        }
-    };
-
-    const handleSubmitImage = (event: React.FormEvent) => {
-        event.preventDefault();
-        // Lakukan sesuatu dengan file, misalnya mengunggah ke server
-        console.log('Profile image:', profileImageFormState.profileImage);
-    };
+export default async function Page({ params }: { params: { id: string } }) {
 
     return (
         <article className="w-full p-5 md:p-6 lg:p-8">
             <section className="w-full sm:w-9/12 md:w-7/12">
-                <h1 className="font-semibold text-[30px] text-gray-800">Tambah Karyawan</h1>
-                <p className="text-sm text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem repellat voluptatem aperiam nam nemo praesentium, nesciunt tempora perferendis.</p>
+                <h1 className="font-semibold text-[30px] text-gray-800">Ubah Data Karyawan</h1>
             </section>
             <div className="flex flex-wrap md:flex-nowrap mt-5">
-                <form action={TambahKaryawanAction} className="order-2 md:order-1 w-full md:w-7/12 flex flex-wrap gap-y-1 md:pr-5 mb-5 md:mb-0">
+                <form className="order-2 md:order-1 w-full md:w-7/12 flex flex-wrap gap-y-1 md:pr-5 mb-5 md:mb-0">
                     <div className="w-full max-w-full">
                         <div className="mb-2.5">
                             <label

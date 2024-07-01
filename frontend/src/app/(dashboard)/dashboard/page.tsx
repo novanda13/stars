@@ -98,11 +98,11 @@ export default function DashboardHome() {
         <main className="w-full flex items-start">
             <article id="dashboard-main_main">
                 <div className="h-[60px] flex items-center bg-slate-100 border-b">
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Semua</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Makanan</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Minuman</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Dessert</Button>
-                    <Button type="button" className="w-[20%] rounded-none bg-transparent text-gray-800">Lainnya</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Semua</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Makanan</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Minuman</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Dessert</Button>
+                    <Button type="button" className="w-[20%] font-medium text-base rounded-none hover:bg-transparent bg-transparent hover:text-blue-600 text-gray-800">Lainnya</Button>
                 </div>
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 p-5 overflow-y-auto" style={{ height: "calc(100% - 60px)" }}>
                     {products.map((food) => (
@@ -157,7 +157,7 @@ export default function DashboardHome() {
                     {orderedFoods.map((order) => (
                         <div key={order.id} className="w-full flex flex-nowrap items-center border-l-[10px] border-blue-500 py-2 px-2 border rounded-lg">
                             <div className="h-[60px] w-[60px]">
-                                <img className="w-full h-full object-cover" src="https://cdn1-production-images-kly.akamaized.net/EjwV7j3Y4JrlqUFuavke4NtRWtM=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3108566/original/079979700_1587487794-Sajiku_1.jpg" alt="Nasi Goreng" />
+                                <img className="w-full h-full object-cover" src={`/${order.image}`} alt="Nasi Goreng" />
                             </div>
                             <div className="px-2" style={{ width: "calc(100% - 135px)" }}>
                                 <h3 className="font-semibold text-sm text-blue-500">{order.name}</h3>
