@@ -19,3 +19,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./backend
         run: npm install
+
+      - name: Run Unit Tests
+        working-directory: ./backend
+        run: npm run test
