@@ -38,9 +38,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`) VALUES
-('543bacda-861f-4843-ac2a-e9712be1b16e', 'Makanan', '2024-05-09 15:17:47.000'),
-('632f65a9-d355-4087-b63c-9bf8ec31b07c', 'Minuman', '2024-05-23 00:30:12.319'),
-('fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 'Snack', '2024-05-23 03:25:48.000');
+('543bacda-861f-4843-ac2a-e9712be1b16e', 'Dessert', '2024-05-09 15:17:47.000'),
+('632f65a9-d355-4087-b63c-9bf8ec31b07c', 'Makanan', '2024-05-23 00:30:12.319'),
+('fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 'Beverages', '2024-05-23 03:25:48.000');
 
 -- --------------------------------------------------------
 
@@ -64,20 +64,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `category_id`, `price`, `image`, `status`, `created_at`, `created_by`) VALUES
-('1dd5ea6f-a8f7-4475-8684-4030e8a3064f', 'Air Mineral', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 6500, 'air-mineral.jpg', 1, '2024-05-09 08:32:07.434', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
-('30570334-8d55-4a1b-91bb-579512979554', 'Americano', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 20000, 'americano.jfif', 1, '2024-05-09 09:14:39.096', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
-('35a40a48-a2bb-474d-b5b2-d44c9a4eddf1', 'Jus Alpukat', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 17000, 'avocado-juice.jpg', 1, '2024-05-09 09:01:14.649', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
-('45fecf32-bf3c-4724-b60a-201c99edac21', 'Ayam Goreng', '543bacda-861f-4843-ac2a-e9712be1b16e', 25000, 'ayam-goreng.jpg', 1, '2024-05-09 08:59:39.519', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
-('8e601464-9139-418a-b0d9-e2b51c8a0184', 'Cappuccino', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 22500, 'cappuccino.jpg', 1, '2024-05-22 20:27:32.249', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
-('e998004d-381c-4bcf-995c-26801d04c619', 'Cireng Isi Ayam', 'fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 10000, 'cireng-isi.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Es Teh', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 10000, 'es-teh.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Expresso', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 21000, 'expresso.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Kentang Goreng', 'fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 13500, 'kentang-goreng.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Latte', '632f65a9-d355-4087-b63c-9bf8ec31b07c', 25000, 'latte.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Nasi Goreng', '543bacda-861f-4843-ac2a-e9712be1b16e', 22000, 'nasi-goreng.webp', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Pasta', '543bacda-861f-4843-ac2a-e9712be1b16e', 32000, 'pasta.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Pisang Goreng', 'fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 10000, 'pisang-goreng.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
-('e998004d-381c-4bcf-995c-26801d04c619', 'Salad Sayur', '543bacda-861f-4843-ac2a-e9712be1b16e', 15000, 'salad-sayur.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
+('1dd5ea6f-a8f7-4475-8684-4030e8a3064f', 'Pudding Bawang', '543bacda-861f-4843-ac2a-e9712be1b16e', 23500, 'pudding.jpg', 1, '2024-05-09 08:32:07.434', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
+('30570334-8d55-4a1b-91bb-579512979554', 'Susu Jelly', '543bacda-861f-4843-ac2a-e9712be1b16e', 13500, 'agar.jpg', 1, '2024-05-09 09:14:39.096', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
+('35a40a48-a2bb-474d-b5b2-d44c9a4eddf1', 'Agar Agar', '543bacda-861f-4843-ac2a-e9712be1b16e', 13500, 'agar.jpg', 1, '2024-05-09 09:01:14.649', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
+('45fecf32-bf3c-4724-b60a-201c99edac21', 'Keripik Kaca', '543bacda-861f-4843-ac2a-e9712be1b16e', 23500, 'pudding.jpg', 1, '2024-05-09 08:59:39.519', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
+('8e601464-9139-418a-b0d9-e2b51c8a0184', 'Soda Gembira', 'fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 22500, 'soda.jpg', 1, '2024-05-22 20:27:32.249', 'd9182cce-97bc-4f39-96b1-4ea523446eab'),
+('e998004d-381c-4bcf-995c-26801d04c619', 'Susu Murni', 'fe72c8bb-d8d1-43d6-abb8-dac97403a22d', 13500, 'agar.jpg', 1, '2024-05-13 13:43:22.326', 'd9182cce-97bc-4f39-96b1-4ea523446eab');
 
 -- --------------------------------------------------------
 
@@ -149,7 +141,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `role_id`, `phone`, `
 ('9b2243d8-197f-4dea-8b1a-07cfb14efe92', 'anjasmara', '$2a$10$aMTWPpR/y9vUSnpqI6nP1OkCWazQCfHakD3dCqo8h.vDd.lvYWZZy', 'example_name', '89c1337c-c29a-445b-a98f-b50055e01b2b', '123245678930', 'https://example.com/picture.jpg', '2024-05-09 09:25:28.465'),
 ('a13be94c-bc56-4abd-931f-19e76377f70a', 'kasir2', '$2a$10$J.ZjoakjBf6wGAGqVa038u.eCdng/C/hw4loKiOxy33IF1z17FYi6', 'Kasir 2', '4ccf6160-d97a-4653-b323-53dafe1592a9', '123245678930', 'https://example.com/picture.jpg', '2024-06-06 16:11:30.096'),
 ('d9182cce-97bc-4f39-96b1-4ea523446eab', 'edel.kind', '$2a$10$v3zpwVVVLWk2qLsg5cGpmucHSZwTe53Gkr36hqVSvvnXDWlwm9oq2', 'Sigit Wijonarko', '4ccf6160-d97a-4653-b323-53dafe1592a9', '1234567390', 'https://example.com/profile.jpg', '2024-05-04 22:15:07.793'),
-('da20292a-36c3-4732-b1d4-e701099774ff', 'adnan', '$2a$10$v3zpwVVVLWk2qLsg5cGpmucHSZwTe53Gkr36hqVSvvnXDWlwm9oq2', 'Muhammad Adnan', '89c1337c-c29a-445b-a98f-b50055e01b2b', '1234567890', 'https://example.com/profile.jpg', '2024-05-04 22:13:09.309');
+('da20292a-36c3-4732-b1d4-e701099774ff', 'ini.adnan', '$2a$10$p6LL.73vBZLKUEZhjPX2YupMwis9K6T8jwR1TMG2buyq7U41D0qOm', 'Muhammad Adnan', '4ccf6160-d97a-4653-b323-53dafe1592a9', '1234567890', 'https://example.com/profile.jpg', '2024-05-04 22:13:09.309');
 
 -- --------------------------------------------------------
 
