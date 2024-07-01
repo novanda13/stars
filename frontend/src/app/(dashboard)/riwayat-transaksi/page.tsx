@@ -33,7 +33,7 @@ export default function Transaksi() {
                 if (!tokenAuth()) {
                     throw new Error("Token not found");
                 }
-                const response = await fetch("http://localhost:3000/api/transactions", {
+                const response = await fetch("http://159.223.64.28:3000/api/transactions", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function Transaksi() {
     const handleDeleteTransaction = async (id: string) => {
         try {
             const response = await fetch(
-                `http://localhost:3000/api/transactions/${id}`,
+                `http://159.223.64.28:3000/api/transactions/${id}`,
                 {
                     method: "DELETE",
                     headers: {
