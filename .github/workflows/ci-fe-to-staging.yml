@@ -1,4 +1,4 @@
-name: Build Frontend Before Merge To Staging
+name: Build and Test Frontend Before Merge To Staging
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - staging
 
 jobs:
-  build-to-merge-staging:
+  build-and-test-to-merge-staging:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,6 +21,10 @@ jobs:
       - name: Install Frontend dependencies
         working-directory: ./frontend
         run: npm install
+
+      - name: Run Unit Tests
+        working-directory: ./frontend
+        run: npm run test
 
       - name: Build Frontend
         working-directory: ./frontend
